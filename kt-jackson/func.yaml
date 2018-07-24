@@ -1,0 +1,7 @@
+name: kt-jackson
+version: 0.0.1
+runtime: kotlin
+cmd: com.delabassee.HelloFunctionKt::hello
+build_image: fnproject/fn-java-fdk-build:jdk9-1.0.63
+run_image: fnproject/fn-java-fdk:jdk9-1.0.63
+format: http
