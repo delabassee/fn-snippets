@@ -3,32 +3,33 @@ package com.delabassee
 
 import com.beust.klaxon.*
 
+data class Country(
+        @Json(name = "country")
+        val name: String,
+        val capital: String,
+        val population: Int )
+
 
 fun hello(input: String): String {
 
-    val countries = json {
-        obj(
-                "countries" to
-                        array(
-                                obj(
-                                        "country" to "Belgium",
-                                        "capital" to "Brussels",
-                                        "population" to 11_190_846
-                                ),
-                                obj(
-                                        "country" to "France",
-                                        "capital" to "Paris",
-                                        "population" to 4_164_783
-                                ),
-                                obj(
-                                        "country" to "Croatia",
-                                        "capital" to "Zagreb",
-                                        "population" to 4_164_783
-                                )
-                        )
-        )
-    }
-    
-    return(countries.toJsonString(true))
+    val myCountries= listOf(
+            Country("Belgium", "Brussels", 11_190_846 ),
+            Country("Brazil", "Brasilia", 210_969_008),
+            Country("Croatia", "Zargeb", 4_164_783),
+            Country("France", "Paris", 65_233_271 ),
+            Country("New Zealand", "Wellington", 4_749_598 ) )
 
+    val result = myCountries.find(){it.name.toLowerCase() == input.toLowerCase()}
+
+    if (result != null)
+        return ( Klaxon().toJsonString(result))
+    else
+        return (
+                json {
+                    obj(
+                            "status" to 404,
+                            "msg" to "Country not found"
+                    ).toJsonString(true)
+                }
+        )
 }
