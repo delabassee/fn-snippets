@@ -10,4 +10,4 @@ Eg. `echo "x" | fn --verbose run kt-kountry` will produce `[{"iso":"LUX","code":
 
 ### kt-klaxon & kt-jackson
 
-Kotlin sample that illustrate JSON support via Klaxon and Jackson
+Kotlin sample that illustrates JSON support via Klaxon and Jackson
